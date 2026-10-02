@@ -18,3 +18,6 @@ services:
       GPU_MEMORY_UTILIZATION: "0.04"
       MAX_NUM_SEQS: "1"
       PORT: "8000"
+    command:
+      - "--max-num-batched-tokens"
+      - "1500"
