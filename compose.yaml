@@ -1,0 +1,20 @@
+services:
+  whisper:
+    build:
+      context: .
+      args:
+        VLLM_VERSION: "0.30.0"
+    image: whisper-large-v3-vllm:0.30.0
+    container_name: whisper-large-v3
+    restart: unless-stopped
+    ipc: host
+    gpus: all
+    ports:
+      - "8001:8000"
+    volumes:
+      - "${HOME}/.cache/huggingface:/root/.cache/huggingface"
+    environment:
+      MODEL_ID: "openai/whisper-large-v3"
+      GPU_MEMORY_UTILIZATION: "0.04"
+      MAX_NUM_SEQS: "1"
+      PORT: "8000"
